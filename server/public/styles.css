@@ -1,7 +1,11 @@
-.scale-down {
-  object-fit: scale-down;
+.contain {
+  object-fit: contain;
 }
-.cardgroup {
-  display: flex;
-  flex-wrap: wrap;
+.image-container {
+  width: 18rem;
+  height: 42%;
+
+}
+.card-width {
+  width: 18rem;
 }

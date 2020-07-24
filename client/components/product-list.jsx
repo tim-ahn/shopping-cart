@@ -22,11 +22,16 @@ class ProductList extends React.Component {
 
   render() {
     return (
-      <div className="card-deck cardgroup">
+      <div className="row">
         {
           this.state.products.map(products =>
             (
-              <ProductListItem key={products.productId} image={products.image} name={products.name} price={products.price} shortDescription={products.shortDescription} />
+              <ProductListItem
+                key={products.productId}
+                image={products.image}
+                name={products.name}
+                price={products.price}
+                shortDescription={products.shortDescription} />
             )
           )
         }
