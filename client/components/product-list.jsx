@@ -15,52 +15,23 @@ class ProductList extends React.Component {
   }
 
   getProducts() {
-    fetch('/api/products')
+    fetch('/api/health-check')
       .then(response => response.json())
       .then(data => this.setState({ products: data }));
-
   }
 
   render() {
     return (
-      <div className='container-fluid'>
-        <div className='row'>
-          <div className='col-sm'>
-            <ProductListItem />
-          </div>
-          <div className='col-sm'>
-            <ProductListItem />
-          </div>
-          <div className='col-sm'>
-            <ProductListItem />
-          </div>
-        </div>
-
-        <div className='row'>
-          <div className='col-sm'>
-            <ProductListItem />
-          </div>
-          <div className='col-sm'>
-            <ProductListItem />
-          </div>
-          <div className='col-sm'>
-            <ProductListItem />
-          </div>
-        </div>
-
-        <div className='row'>
-          <div className='col-sm'>
-            <ProductListItem />
-          </div>
-          <div className='col-sm'>
-            <ProductListItem />
-          </div>
-          <div className='col-sm'>
-            <ProductListItem />
-          </div>
-        </div>
-
+      <div className="card-deck cardgroup">
+        {
+          this.state.products.map(products =>
+            (
+              <ProductListItem key={products.productId} image={products.image} name={products.name} price={products.price} shortDescription={products.shortDescription} />
+            )
+          )
+        }
       </div>
+
     );
   }
 }
