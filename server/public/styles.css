@@ -1,6 +1,67 @@
-.card-width{
-  width: 18rem;
+
+.product-price {
+  position: absolute;
+  left: 5.41%;
+  right: 77.03%;
+  top: 72.59%;
+  bottom: 21.32%;
+
+  color: #666666;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 12px;
 }
-.grey {
-  color: grey;
+
+.product-description {
+position: absolute;
+left: 5.41%;
+right: 6.08%;
+top: 82.74%;
+bottom: 4.57%;
+
+font-family: 'Roboto', sans-serif;
+font-style: normal;
+font-weight: normal;
+font-size: 10px;
+line-height: 12px;
+
+color: #000000;
+}
+.product-image {
+  object-fit: contain;
+  position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 42.64%;
+background: #C4C4C4;
+}
+
+.product-card {
+
+  width: 18rem;
+  height: 22rem;
+  background: #FFFFFF;
+  border: 1px solid #000000;
+}
+
+.product-name {
+position: absolute;
+left: 5.41%;
+right: 33.78%;
+top: 60.91%;
+bottom: 30.96%;
+
+font-family: 'Roboto', sans-serif;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 16px;
+
+color: #000000;
+}
+.card-width{
+
 }
