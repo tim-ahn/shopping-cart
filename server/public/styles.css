@@ -2,10 +2,12 @@
   object-fit: contain;
 }
 .image-container {
-  width: 18rem;
-  height: 42%;
+  width: 15rem;
+
+  align-items: baseline;
 
 }
 .card-width {
   width: 18rem;
+
 }

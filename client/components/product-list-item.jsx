@@ -4,10 +4,7 @@ function ProductListItem(props) {
   return (
     <div className="col-md-4">
       <div className="card card-width">
-        <div className="image-container">
-          <img src={props.image} className="card-img-top contain " alt=""></img>
-        </div>
-
+        <img src={props.image} className="card-img-top contain" alt=""></img>
         <div className="card-body text-container">
           <h5 className="card-title">{props.name}</h5>
           <h6 className="card-subtitle">{props.price}</h6>
