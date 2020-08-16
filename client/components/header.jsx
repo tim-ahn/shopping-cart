@@ -3,7 +3,12 @@ import React from 'react';
 class Header extends React.Component {
   render() {
     return (
-      <h5>$ Wicked Sales</h5>
+      <div style={{ height: '3rem' }} className="align-baseline text-white container-fluid bg-dark">
+
+        <span className="">$ Wicked Sales</span>
+
+      </div>
+
     );
   }
 }
