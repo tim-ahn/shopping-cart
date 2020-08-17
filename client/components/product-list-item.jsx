@@ -4,10 +4,10 @@ class ProductListItem extends React.Component {
 
   render() {
     return (
-      <div className="container col-md-4">
-        <div className="card card-width">
-          <div className="image-container">
-            <img src={this.props.image} className="card-img-top img-dimensions" alt=""></img>
+      <div className="container col m-2 ">
+        <div className="card ">
+          <div className="image-container obj-fit">
+            <img src={this.props.image} className="card-img-top " alt=""></img>
           </div>
 
           <div className="card-body">

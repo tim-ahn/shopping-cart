@@ -6,13 +6,7 @@
   align-items: baseline;
 
 }
-.card-width {
-  width: 18rem;
 
-}
-.img-dimensions {
-  height: 148px;
-  width: 113px;
-
+.obj-fit {
   object-fit: scale-down;
 }

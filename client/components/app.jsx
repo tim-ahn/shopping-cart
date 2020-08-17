@@ -12,7 +12,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch('/api/health-check')
+    fetch('/api/products')
       .then(res => res.json())
       .then(data => this.setState({ message: data.message || data.error }))
       .catch(err => this.setState({ message: err.message }))
