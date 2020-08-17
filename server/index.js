@@ -13,9 +13,6 @@ app.use(sessionMiddleware);
 
 app.use(express.json());
 
-// Add an endpoint after the GET endpoint for /api/health-check to
-// server/index.js that queries the database for the productId, name, price,
-// image, and shortDescription for all products in the "products" table.
 app.get('/api/products', (req, res, next) => {
   const sql = `
     select "productId",
@@ -27,6 +24,19 @@ app.get('/api/products', (req, res, next) => {
   `;
 
   db.query(sql)
+    .then(result => res.json(result.rows))
+    .catch(err => next(err));
+});
+
+app.get('/api/products/:productId', (req, res, next) => {
+  const productId = req.params.productId;
+  const sql = `
+    select "name", "price", "image", "shortDescription"
+      from "products"
+      where "productId" = $1
+  `;
+  const params = [productId];
+  db.query(sql, params)
     .then(result => res.json(result.rows))
     .catch(err => next(err));
 });
