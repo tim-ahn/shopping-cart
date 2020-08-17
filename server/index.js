@@ -16,7 +16,7 @@ app.use(express.json());
 // Add an endpoint after the GET endpoint for /api/health-check to
 // server/index.js that queries the database for the productId, name, price,
 // image, and shortDescription for all products in the "products" table.
-app.get('/api/health-check', (req, res, next) => {
+app.get('/api/products', (req, res, next) => {
   const sql = `
     select "productId",
            "name",
