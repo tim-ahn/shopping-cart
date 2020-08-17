@@ -3,9 +3,9 @@ import React from 'react';
 class Header extends React.Component {
   render() {
     return (
-      <div style={{ height: '3rem' }} className="align-baseline text-white container-fluid bg-dark">
+      <div className="text-white container-fluid bg-dark mb-4">
 
-        <span className="">$ Wicked Sales</span>
+        <span>$ Wicked Sales</span>
 
       </div>
 

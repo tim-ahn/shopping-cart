@@ -7,7 +7,7 @@ class ProductList extends React.Component {
     this.state = {
       products: []
     };
-
+    this.convertToDollars = this.convertToDollars.bind(this);
   }
 
   componentDidMount() {
@@ -20,9 +20,18 @@ class ProductList extends React.Component {
       .then(data => this.setState({ products: data }));
   }
 
+  convertToDollars(price) {
+    const formatter = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD'
+    });
+    const convertedPrice = formatter.format(price / 100);
+    return convertedPrice;
+  }
+
   render() {
     return (
-      <div className="row">
+      <div className="card-columns flex-wrap ml-4">
         {
           this.state.products.map(products =>
             (
@@ -30,7 +39,7 @@ class ProductList extends React.Component {
                 key={products.productId}
                 image={products.image}
                 name={products.name}
-                price={products.price}
+                price={this.convertToDollars(products.price)}
                 shortDescription={products.shortDescription} />
             )
           )
