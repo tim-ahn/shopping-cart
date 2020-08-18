@@ -28,10 +28,11 @@ app.get('/api/products', (req, res, next) => {
     .catch(err => next(err));
 });
 
+// get request route handler for product details
 app.get('/api/products/:productId', (req, res, next) => {
   const productId = req.params.productId;
   const sql = `
-    select "name", "price", "image", "shortDescription"
+    select "name", "price", "image", "shortDescription", "longDescription"
       from "products"
       where "productId" = $1
   `;

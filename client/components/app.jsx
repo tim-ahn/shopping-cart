@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import Header from './header';
-
+import ProductDetails from './product-details';
 import ProductList from './product-list';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -23,8 +25,9 @@ class App extends React.Component {
     return this.state.isLoading
       ? <h1>Testing connections...</h1>
       : <div>
-        <Header />
-        <ProductList />
+        {/* <Header />
+        <ProductList /> */}
+        <ProductDetails productId={1}/>
       </div>;
   }
 }
