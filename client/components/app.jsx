@@ -17,6 +17,10 @@ class App extends React.Component {
     };
   }
 
+  setView(name, params) {
+    this.setState({ view: { name: name, params: params } });
+  }
+
   componentDidMount() {
     fetch('/api/products')
       .then(res => res.json())
