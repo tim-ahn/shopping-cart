@@ -46,19 +46,17 @@ class ProductDetails extends React.Component {
 
   render() {
     return (
-      <div className="card border border-warning m-4">
+      <div className="card border border-light m-4">
 
         <div className="card-body">
-          <img
-            src={this.state.image}
-            style={{ height: '100px' }}
-            className="card-img-top float-left object-fit p-2"
-            alt=""></img>
-          <h5 className="card-title">{this.state.name}</h5>
+          <img src={this.state.image} className="col-sm-4 pr-4 card-img-top float-left object-fit p-2" alt=""></img>
+          <h3 className="card-title">{this.state.name}</h3>
           <div className="card-subtitle">{this.convertToDollars(this.state.price)}</div>
-          <div className="card-test">{this.state.shortDescription}</div>
+          <div className="card-text">{this.state.shortDescription}</div>
 
         </div>
+        <div className="card-text pb-4 px-4">{this.state.longDescription}</div>
+
       </div>
 
     );
