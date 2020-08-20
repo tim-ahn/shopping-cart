@@ -31,13 +31,27 @@ class App extends React.Component {
   }
 
   render() {
-    return this.state.isLoading
-      ? <h1>Testing connections...</h1>
-      : <div>
-        <Header />
-        <ProductList setView={this.setView}/>
 
-      </div>;
+    let pageView;
+    if (this.state.view.name === 'catalog') {
+      return this.state.isLoading
+        ? <h1>Testing connections...</h1>
+        : <div>
+          <Header />
+          <ProductList setView={this.setView}/>
+        </div>;
+    } else if (this.state.view.name === 'details') {
+      // render product details component
+      return this.state.isLoading
+        ? <h1>Testing connections...</h1>
+        : <div>
+          <Header />
+          <ProductDetails
+            params={this.state.view.params}
+            setView={this.setView}
+          />
+        </div>;
+    }
   }
 }
 export default App;
