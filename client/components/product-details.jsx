@@ -49,7 +49,11 @@ class ProductDetails extends React.Component {
       <div className="card border border-warning m-4">
 
         <div className="card-body">
-          <img src={this.state.image} style={{ height: '100px' }} className="card-img-top float-left object-fit p-2" alt=""></img>
+          <img
+            src={this.state.image}
+            style={{ height: '100px' }}
+            className="card-img-top float-left object-fit p-2"
+            alt=""></img>
           <h5 className="card-title">{this.state.name}</h5>
           <div className="card-subtitle">{this.convertToDollars(this.state.price)}</div>
           <div className="card-test">{this.state.shortDescription}</div>
