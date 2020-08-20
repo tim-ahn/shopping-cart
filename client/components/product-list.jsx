@@ -36,6 +36,7 @@ class ProductList extends React.Component {
           this.state.products.map(products =>
             (
               <ProductListItem
+                setView={this.props.setView}
                 key={products.productId}
                 image={products.image}
                 name={products.name}

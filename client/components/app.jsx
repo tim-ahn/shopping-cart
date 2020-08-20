@@ -15,6 +15,7 @@ class App extends React.Component {
         params: {}
       }
     };
+    this.setView = this.setView.bind(this);
   }
 
   setView(name, params) {
@@ -33,9 +34,9 @@ class App extends React.Component {
     return this.state.isLoading
       ? <h1>Testing connections...</h1>
       : <div>
-        {/* <Header />
-        <ProductList /> */}
-        <ProductDetails productId={1}/>
+        <Header />
+        <ProductList setView={this.setView}/>
+
       </div>;
   }
 }
