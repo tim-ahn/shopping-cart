@@ -4,10 +4,7 @@ class ProductDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: null,
-      price: null,
-      image: null,
-      shortDescription: null
+      product: null
     };
     this.getProductDetails = this.getProductDetails.bind(this);
     this.convertToDollars = this.convertToDollars.bind(this);
@@ -19,14 +16,7 @@ class ProductDetails extends React.Component {
       .then(result => {
         // eslint-disable-next-line no-console
         console.log(result);
-        this.setState({
-          name: result[0].name,
-          price: result[0].price,
-          image: result[0].image,
-          shortDescription: result[0].shortDescription,
-          longDescription: result[0].longDescription
-        });
-
+        this.setState({ product: result });
       })
       .catch(error => console.error(error));
   }
@@ -41,21 +31,22 @@ class ProductDetails extends React.Component {
   }
 
   componentDidMount() {
-    this.getProductDetails(this.props.productId);
+    // this.getProductDetails(this.props.productId);
+    this.getProductDetails(1);
   }
 
   render() {
     return (
       <div className="card border border-light m-4">
-
+        <div className="ml-4" onClick={() => this.props.setView('details')}> &lt; Back to catalog </div>
         <div className="card-body">
-          <img src={this.state.image} className="col-sm-4 pr-4 card-img-top float-left object-fit p-2" alt=""></img>
-          <h3 className="card-title">{this.state.name}</h3>
-          <div className="card-subtitle">{this.convertToDollars(this.state.price)}</div>
-          <div className="card-text">{this.state.shortDescription}</div>
+          <img src={this.state.product.image} className="col-sm-4 pr-4 card-img-top float-left object-fit p-2" alt=""></img>
+          <h3 className="card-title">{this.state.product.name}</h3>
+          <div className="card-subtitle">{this.convertToDollars(this.state.product.price)}</div>
+          <div className="card-text">{this.state.product.shortDescription}</div>
 
         </div>
-        <div className="card-text pb-4 px-4">{this.state.longDescription}</div>
+        <div className="card-text pb-4 px-4">{this.state.product.longDescription}</div>
 
       </div>
 

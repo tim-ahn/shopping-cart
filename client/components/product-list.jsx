@@ -6,6 +6,7 @@ class ProductList extends React.Component {
     super(props);
     this.state = {
       products: []
+
     };
     this.convertToDollars = this.convertToDollars.bind(this);
   }
@@ -15,7 +16,8 @@ class ProductList extends React.Component {
   }
 
   getProducts() {
-    fetch('/api/products')
+    const path = '/api/products/';
+    fetch(path)
       .then(response => response.json())
       .then(data => this.setState({ products: data }));
   }
@@ -36,17 +38,15 @@ class ProductList extends React.Component {
           this.state.products.map(products =>
             (
               <ProductListItem
-                setView={this.props.setView}
                 key={products.productId}
-                image={products.image}
-                name={products.name}
-                price={this.convertToDollars(products.price)}
-                shortDescription={products.shortDescription} />
+                setView={this.props.setView}
+                convertToDollars={this.convertToDollars}
+
+              />
             )
           )
         }
       </div>
-
     );
   }
 }

@@ -11,7 +11,7 @@ class App extends React.Component {
       message: null,
       isLoading: true,
       view: {
-        name: 'catalog',
+        name: 'details',
         params: {}
       }
     };
@@ -34,24 +34,19 @@ class App extends React.Component {
 
     let pageView;
     if (this.state.view.name === 'catalog') {
-      return this.state.isLoading
-        ? <h1>Testing connections...</h1>
-        : <div>
-          <Header />
-          <ProductList setView={this.setView}/>
-        </div>;
+      pageView =
+      <ProductList
+        setView={this.setView}/>;
     } else if (this.state.view.name === 'details') {
-      // render product details component
-      return this.state.isLoading
-        ? <h1>Testing connections...</h1>
-        : <div>
-          <Header />
-          <ProductDetails
-            params={this.state.view.params}
-            setView={this.setView}
-          />
-        </div>;
+      pageView =
+      <ProductDetails
+        productId={this.state.view.params}
+        setView={this.setView}/>;
     }
+    return (<>
+      <Header />
+      {pageView}
+    </>);
   }
 }
 export default App;
