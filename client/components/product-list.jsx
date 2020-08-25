@@ -6,48 +6,43 @@ class ProductList extends React.Component {
     super(props);
     this.state = {
       products: []
-
     };
-    this.convertToDollars = this.convertToDollars.bind(this);
+    this.getProducts = this.getProducts.bind(this);
+  }
+
+  getProducts() {
+    const path = '/api/products';
+    fetch(path)
+      .then(response => response.json())
+      .then(data => this.setState({ products: data }));
   }
 
   componentDidMount() {
     this.getProducts();
   }
 
-  getProducts() {
-    const path = '/api/products/';
-    fetch(path)
-      .then(response => response.json())
-      .then(data => this.setState({ products: data }));
-  }
-
-  convertToDollars(price) {
-    const formatter = new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD'
-    });
-    const convertedPrice = formatter.format(price / 100);
-    return convertedPrice;
-  }
-
   render() {
-    return (
-      <div className="card-columns flex-wrap ml-4">
-        {
-          this.state.products.map(products =>
-            (
-              <ProductListItem
-                key={products.productId}
-                setView={this.props.setView}
-                convertToDollars={this.convertToDollars}
+    if (this.state.products.length > 0) {
+      return (
+        <div className="card-columns flex-wrap ml-4">
+          {
+            this.state.products.map((product, index) =>
+              (
+                <ProductListItem
+                  key={index}
+                  setView={this.props.setView}
+                  convertToDollars={this.props.convertToDollars}
+                  product={product}
 
-              />
+                />
+              )
             )
-          )
-        }
-      </div>
-    );
+          }
+        </div>
+      );
+    } else {
+      return null;
+    }
   }
 }
 export default ProductList;

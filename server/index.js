@@ -32,13 +32,13 @@ app.get('/api/products', (req, res, next) => {
 app.get('/api/products/:productId', (req, res, next) => {
   const productId = req.params.productId;
   const sql = `
-    select "name", "price", "image", "shortDescription", "longDescription"
+    select *
       from "products"
       where "productId" = $1
   `;
   const params = [productId];
   db.query(sql, params)
-    .then(result => res.json(result.rows))
+    .then(result => res.json(result.rows[0]))
     .catch(err => next(err));
 });
 

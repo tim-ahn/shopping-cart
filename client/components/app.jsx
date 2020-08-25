@@ -11,15 +11,25 @@ class App extends React.Component {
       message: null,
       isLoading: true,
       view: {
-        name: 'details',
+        name: 'catalog',
         params: {}
       }
     };
     this.setView = this.setView.bind(this);
+    this.convertToDollars = this.convertToDollars.bind(this);
   }
 
   setView(name, params) {
     this.setState({ view: { name: name, params: params } });
+  }
+
+  convertToDollars(price) {
+    const formatter = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD'
+    });
+    const convertedPrice = formatter.format(price / 100);
+    return convertedPrice;
   }
 
   componentDidMount() {
@@ -31,16 +41,17 @@ class App extends React.Component {
   }
 
   render() {
-
     let pageView;
     if (this.state.view.name === 'catalog') {
       pageView =
       <ProductList
+        convertToDollars={this.convertToDollars}
         setView={this.setView}/>;
     } else if (this.state.view.name === 'details') {
       pageView =
       <ProductDetails
-        productId={this.state.view.params}
+        convertToDollars={this.convertToDollars}
+        params={this.state.view.params}
         setView={this.setView}/>;
     }
     return (<>
