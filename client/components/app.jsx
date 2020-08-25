@@ -1,14 +1,35 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import Header from './header';
-
+import ProductDetails from './product-details';
 import ProductList from './product-list';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       message: null,
-      isLoading: true
+      isLoading: true,
+      view: {
+        name: 'catalog',
+        params: {}
+      }
     };
+    this.setView = this.setView.bind(this);
+    this.convertToDollars = this.convertToDollars.bind(this);
+  }
+
+  setView(name, params) {
+    this.setState({ view: { name: name, params: params } });
+  }
+
+  convertToDollars(price) {
+    const formatter = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD'
+    });
+    const convertedPrice = formatter.format(price / 100);
+    return convertedPrice;
   }
 
   componentDidMount() {
@@ -20,12 +41,23 @@ class App extends React.Component {
   }
 
   render() {
-    return this.state.isLoading
-      ? <h1>Testing connections...</h1>
-      : <div>
-        <Header />
-        <ProductList />
-      </div>;
+    let pageView;
+    if (this.state.view.name === 'catalog') {
+      pageView =
+      <ProductList
+        convertToDollars={this.convertToDollars}
+        setView={this.setView}/>;
+    } else if (this.state.view.name === 'details') {
+      pageView =
+      <ProductDetails
+        convertToDollars={this.convertToDollars}
+        params={this.state.view.params}
+        setView={this.setView}/>;
+    }
+    return (<>
+      <Header />
+      {pageView}
+    </>);
   }
 }
 export default App;
