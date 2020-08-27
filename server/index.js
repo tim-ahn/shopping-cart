@@ -55,8 +55,15 @@ app.get('/api/cart', (req, res, next) => {
 
 // post request endpoint for cart
 app.post('/api/cart', (req, res, next) => {
+  const sql = 'poop';
   if (isNaN(req.body.productId)) {
     res.status(400).json({ error: 'productId is invalid' });
+  } else {
+    db.query(sql)
+      .then()
+      .then()
+      .then()
+      .catch(err => next(err));
   }
 
 });
