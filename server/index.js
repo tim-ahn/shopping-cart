@@ -28,7 +28,7 @@ app.get('/api/products', (req, res, next) => {
     .catch(err => next(err));
 });
 
-// get request route handler for product details
+// get request endpoint for product details
 app.get('/api/products/:productId', (req, res, next) => {
   const productId = req.params.productId;
   const sql = `
@@ -39,6 +39,17 @@ app.get('/api/products/:productId', (req, res, next) => {
   const params = [productId];
   db.query(sql, params)
     .then(result => res.json(result.rows[0]))
+    .catch(err => next(err));
+});
+
+// get request endpoint for cart
+app.get('/api/cart', (req, res, next) => {
+  const sql = `
+    select "cartId", "createdAt"
+      from "carts"
+  `;
+  db.query(sql)
+    .then(result => res.json([]))
     .catch(err => next(err));
 });
 
