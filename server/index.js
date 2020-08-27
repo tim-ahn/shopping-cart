@@ -53,6 +53,14 @@ app.get('/api/cart', (req, res, next) => {
     .catch(err => next(err));
 });
 
+// post request endpoint for cart
+app.post('/api/cart', (req, res, next) => {
+  if (isNaN(req.body.productId)) {
+    res.status(400).json({ error: 'productId is invalid' });
+  }
+
+});
+
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
 });
