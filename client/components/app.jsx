@@ -18,6 +18,7 @@ class App extends React.Component {
     };
     this.setView = this.setView.bind(this);
     this.convertToDollars = this.convertToDollars.bind(this);
+    this.getCartItems = this.getCartItems.bind(this);
   }
 
   setView(name, params) {
@@ -33,12 +34,20 @@ class App extends React.Component {
     return convertedPrice;
   }
 
+  getCartItems() {
+    fetch('/api/cart')
+      .then(res => res.json())
+      .then(data => this.setState({ cart: data }))
+      .catch(err => this.setState({ message: err.message }));
+  }
+
   componentDidMount() {
     fetch('/api/products')
       .then(res => res.json())
       .then(data => this.setState({ message: data.message || data.error }))
       .catch(err => this.setState({ message: err.message }))
       .finally(() => this.setState({ isLoading: false }));
+    this.getCartItems();
   }
 
   render() {
