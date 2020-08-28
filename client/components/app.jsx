@@ -19,6 +19,7 @@ class App extends React.Component {
     this.setView = this.setView.bind(this);
     this.convertToDollars = this.convertToDollars.bind(this);
     this.getCartItems = this.getCartItems.bind(this);
+    this.addToCart = this.addToCart.bind(this);
   }
 
   setView(name, params) {
@@ -37,8 +38,25 @@ class App extends React.Component {
   getCartItems() {
     fetch('/api/cart')
       .then(res => res.json())
-      .then(data => this.setState({ cart: data }))
-      .catch(err => this.setState({ message: err.message }));
+      .then(data => this.setState({ cart: data }));
+    // .catch(err => this.setState({ message: err.message }));
+  }
+
+  addToCart(product) {
+    fetch('/api/cart', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ productId: product.productId })
+    })
+      .then(res => res.json())
+      .then(data => {
+        const currentCart = this.state.cart.slice();
+        currentCart.push(data);
+        this.setState({ cart: currentCart });
+        console.log(this.state.cart);
+      });
   }
 
   componentDidMount() {
@@ -62,10 +80,13 @@ class App extends React.Component {
       <ProductDetails
         convertToDollars={this.convertToDollars}
         params={this.state.view.params}
-        setView={this.setView}/>;
+        setView={this.setView}
+        addToCart={this.addToCart}
+      />;
+
     }
     return (<>
-      <Header />
+      <Header items={this.state.cart.length}/>
       {pageView}
     </>);
   }
