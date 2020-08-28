@@ -13,7 +13,8 @@ class App extends React.Component {
       view: {
         name: 'catalog',
         params: {}
-      }
+      },
+      cart: []
     };
     this.setView = this.setView.bind(this);
     this.convertToDollars = this.convertToDollars.bind(this);
