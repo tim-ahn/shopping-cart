@@ -13,7 +13,7 @@ class App extends React.Component {
       message: null,
       isLoading: true,
       view: {
-        name: 'catalog',
+        name: 'cart',
         params: {}
       },
       cart: []
@@ -87,15 +87,16 @@ class App extends React.Component {
         setView={this.setView}
         addToCart={this.addToCart}
       />;
-
-    }
-    return (<>
-      <Header cartItemCount={this.state.cart.length}/>
-      {/* {pageView} */}
+    } else if (this.state.view.name === 'cart') {
+      pageView =
       <CartSummary
         cartItems={this.state.cart}
         convertToDollars={this.convertToDollars}
-      />
+      />;
+    }
+    return (<>
+      <Header cartItemCount={this.state.cart.length}/>
+      {pageView}
     </>);
   }
 }
