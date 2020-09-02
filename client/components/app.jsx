@@ -13,7 +13,7 @@ class App extends React.Component {
       message: null,
       isLoading: true,
       view: {
-        name: 'cart',
+        name: 'catalog',
         params: {}
       },
       cart: []
@@ -95,7 +95,11 @@ class App extends React.Component {
       />;
     }
     return (<>
-      <Header cartItemCount={this.state.cart.length}/>
+      <Header
+        cartItemCount={this.state.cart.length}
+        setView={this.setView}
+      />
+
       {pageView}
     </>);
   }
