@@ -33,6 +33,10 @@ class ProductDetails extends React.Component {
             <h3 className="card-title">{this.state.product.name}</h3>
             <div className="card-subtitle">{this.props.convertToDollars(this.state.product.price)}</div>
             <div className="card-text">{this.state.product.shortDescription}</div>
+            <button
+              className="btn btn-primary"
+              onClick={() => { this.props.addToCart(this.state.product); }}
+            >Add to Cart</button>
           </div>
           <div className="card-text pb-4 px-4">{this.state.product.longDescription}</div>
         </div>
