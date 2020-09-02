@@ -4,6 +4,7 @@ import Header from './header';
 import ProductDetails from './product-details';
 import ProductList from './product-list';
 import CartSummaryItem from './cart-summary-item';
+import CartSummary from './cart-summary';
 
 class App extends React.Component {
   constructor(props) {
@@ -90,8 +91,11 @@ class App extends React.Component {
     }
     return (<>
       <Header cartItemCount={this.state.cart.length}/>
-      {pageView}
-
+      {/* {pageView} */}
+      <CartSummary
+        cartItems={this.state.cart}
+        convertToDollars={this.convertToDollars}
+      />
     </>);
   }
 }
