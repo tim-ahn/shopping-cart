@@ -92,6 +92,7 @@ class App extends React.Component {
       <CartSummary
         cartItems={this.state.cart}
         convertToDollars={this.convertToDollars}
+        setView={this.setView}
       />;
     }
     return (<>

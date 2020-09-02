@@ -12,24 +12,19 @@ export default class CartSummary extends React.Component {
     if (this.props.cartItems.length > 0) {
       return (
         <div className="container">
+          <div onClick={() => { this.props.setView('catalog'); }}> &lt; Back to catalog </div>
           <h1>My Cart</h1>
-
-          {
-
-            this.props.cartItems.map((item, index) => (
-              <CartSummaryItem
-
-                key={index}
-                image={item.image}
-                name={item.name}
-                price={item.price}
-                shortDescription={item.shortDescription}
-                convertToDollars={this.props.convertToDollars}
-              />
-            ))}
-
+          {this.props.cartItems.map((item, index) => (
+            <CartSummaryItem
+              key={index}
+              image={item.image}
+              name={item.name}
+              price={item.price}
+              shortDescription={item.shortDescription}
+              convertToDollars={this.props.convertToDollars}
+            />
+          ))}
           <div>Total Price: {this.props.convertToDollars(cartTotalPrice)}</div>
-
         </div>
       );
     }
