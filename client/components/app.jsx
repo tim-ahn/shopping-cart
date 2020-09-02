@@ -38,7 +38,9 @@ class App extends React.Component {
   getCartItems() {
     fetch('/api/cart')
       .then(res => res.json())
-      .then(data => this.setState({ cart: data }));
+      .then(data => {
+        this.setState({ cart: data });
+      });
     // .catch(err => this.setState({ message: err.message }));
   }
 
@@ -55,17 +57,17 @@ class App extends React.Component {
         const currentCart = this.state.cart.slice();
         currentCart.push(data);
         this.setState({ cart: currentCart });
-        console.log(this.state.cart);
+
       });
   }
 
   componentDidMount() {
+    this.getCartItems();
     fetch('/api/products')
       .then(res => res.json())
       .then(data => this.setState({ message: data.message || data.error }))
       .catch(err => this.setState({ message: err.message }))
       .finally(() => this.setState({ isLoading: false }));
-    this.getCartItems();
   }
 
   render() {
@@ -86,7 +88,7 @@ class App extends React.Component {
 
     }
     return (<>
-      <Header items={this.state.cart.length}/>
+      <Header cartItemCount={this.state.cart.length}/>
       {pageView}
     </>);
   }
