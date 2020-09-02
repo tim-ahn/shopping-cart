@@ -3,6 +3,8 @@ import React from 'react';
 import Header from './header';
 import ProductDetails from './product-details';
 import ProductList from './product-list';
+import CartSummaryItem from './cart-summary-item';
+import CartSummary from './cart-summary';
 
 class App extends React.Component {
   constructor(props) {
@@ -85,10 +87,20 @@ class App extends React.Component {
         setView={this.setView}
         addToCart={this.addToCart}
       />;
-
+    } else if (this.state.view.name === 'cart') {
+      pageView =
+      <CartSummary
+        cartItems={this.state.cart}
+        convertToDollars={this.convertToDollars}
+        setView={this.setView}
+      />;
     }
     return (<>
-      <Header cartItemCount={this.state.cart.length}/>
+      <Header
+        cartItemCount={this.state.cart.length}
+        setView={this.setView}
+      />
+
       {pageView}
     </>);
   }

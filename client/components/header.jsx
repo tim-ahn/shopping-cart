@@ -6,7 +6,9 @@ class Header extends React.Component {
       <div className="text-white container-fluid bg-dark mb-4">
 
         <div>$ Wicked Sales</div>
-        <div>items in cart: {this.props.cartItemCount}</div>
+        <div
+          onClick={() => { this.props.setView('cart'); }}
+        >items in cart: {this.props.cartItemCount}</div>
       </div>
 
     );
