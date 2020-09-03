@@ -137,13 +137,10 @@ app.post('/api/cart', (req, res, next) => {
 });
 
 app.post('/api/orders', (req, res, next) => {
-  console.log(req.session);
-  req.session.cartId = 21;
   const cartId = req.session.cartId;
   const name = req.body.name;
   const creditCard = req.body.creditCard;
   const shippingAddress = req.body.shippingAddress;
-  console.log(req.session);
   if (!cartId) {
     throw new ClientError('invalid cartId', 400);
   }
