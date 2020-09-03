@@ -121,7 +121,7 @@ app.post('/api/cart', (req, res, next) => {
       }
     })
     .then(cartResult => {
-      req.session.cartId = cartResult.cartId;
+      req.session.cartId = parseInt(cartResult.cartId);
       const cartItemsParams = [cartResult.cartId, productId, cartResult.price];
       return db.query(insertCartItemsQuery, cartItemsParams)
         .then(cartItemsResult => cartItemsResult.rows[0]);
@@ -134,7 +134,40 @@ app.post('/api/cart', (req, res, next) => {
         });
     })
     .catch(err => next(err));
+});
 
+app.post('/api/orders', (req, res, next) => {
+  console.log(req.session);
+  req.session.cartId = 21;
+  const cartId = req.session.cartId;
+  const name = req.body.name;
+  const creditCard = req.body.creditCard;
+  const shippingAddress = req.body.shippingAddress;
+  console.log(req.session);
+  if (!cartId) {
+    throw new ClientError('invalid cartId', 400);
+  }
+  if (!name) {
+    throw new ClientError('enter a name', 400);
+  }
+  if (!creditCard || isNaN(creditCard)) {
+    throw new ClientError('enter a valid credit card number', 400);
+  }
+  if (!shippingAddress) {
+    throw new ClientError('enter a valid address', 400);
+  }
+  const insertOrderQuery = `
+    insert into "orders" ("cartId", "name", "creditCard", "shippingAddress")
+      values ($1, $2, $3, $4)
+      returning "createdAt", "creditCard", "name", "orderId", "shippingAddress"
+  `;
+  const orderParams = [cartId, name, creditCard, shippingAddress];
+  db.query(insertOrderQuery, orderParams)
+    .then(result => {
+      res.status(201).json(result.rows[0]);
+      delete req.session.cartId;
+    })
+    .catch(err => next(err));
 });
 
 app.use('/api', (req, res, next) => {
