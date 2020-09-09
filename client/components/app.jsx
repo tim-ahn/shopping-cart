@@ -65,19 +65,25 @@ class App extends React.Component {
       });
   }
 
-  placeOrder({ name, creditCard, shippingAddress }) {
+  placeOrder(orderDetails) {
+    const order = {
+      name: orderDetails.name,
+      creditCard: orderDetails.creditCard,
+      shippingAddress: orderDetails.shippingAddress
+    };
     fetch('/api/orders', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ name: name, creditCard: creditCard, shippingAddress: shippingAddress })
+      body: JSON.stringify(order)
     })
       .then(res => res.json())
       .then(data => {
+        this.setView('catalog', {});
         this.setState({ cart: [] });
-        this.setState({ view: { name: 'catalog', params: {} } });
-      });
+      })
+      .catch(err => this.setState({ message: err.message }));
   }
 
   setTotalPrice(price) {
@@ -120,7 +126,7 @@ class App extends React.Component {
       pageView =
       <CheckoutForm
         setView={this.setView}
-        placeOrder={this.state.placeOrder}
+        placeOrder={this.placeOrder}
         total={this.state.totalPrice}
       />;
     }
