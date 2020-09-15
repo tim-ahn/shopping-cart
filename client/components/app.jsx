@@ -5,6 +5,7 @@ import ProductDetails from './product-details';
 import ProductList from './product-list';
 import CartSummaryItem from './cart-summary-item';
 import CartSummary from './cart-summary';
+import CheckoutForm from './checkout-form';
 
 class App extends React.Component {
   constructor(props) {
@@ -16,12 +17,15 @@ class App extends React.Component {
         name: 'catalog',
         params: {}
       },
-      cart: []
+      cart: [],
+      totalPrice: ''
     };
     this.setView = this.setView.bind(this);
     this.convertToDollars = this.convertToDollars.bind(this);
     this.getCartItems = this.getCartItems.bind(this);
     this.addToCart = this.addToCart.bind(this);
+    this.placeOrder = this.placeOrder.bind(this);
+    this.setTotalPrice = this.setTotalPrice.bind(this);
   }
 
   setView(name, params) {
@@ -43,7 +47,6 @@ class App extends React.Component {
       .then(data => {
         this.setState({ cart: data });
       });
-    // .catch(err => this.setState({ message: err.message }));
   }
 
   addToCart(product) {
@@ -59,8 +62,32 @@ class App extends React.Component {
         const currentCart = this.state.cart.slice();
         currentCart.push(data);
         this.setState({ cart: currentCart });
-
       });
+  }
+
+  placeOrder(orderDetails) {
+    const order = {
+      name: orderDetails.name,
+      creditCard: orderDetails.creditCard,
+      shippingAddress: orderDetails.shippingAddress
+    };
+    fetch('/api/orders', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(order)
+    })
+      .then(res => res.json())
+      .then(data => {
+        this.setView('catalog', {});
+        this.setState({ cart: [] });
+      })
+      .catch(err => this.setState({ message: err.message }));
+  }
+
+  setTotalPrice(price) {
+    this.setState({ totalPrice: price });
   }
 
   componentDidMount() {
@@ -93,14 +120,22 @@ class App extends React.Component {
         cartItems={this.state.cart}
         convertToDollars={this.convertToDollars}
         setView={this.setView}
+        setTotalPrice={this.setTotalPrice}
+      />;
+    } else if (this.state.view.name === 'checkout') {
+      pageView =
+      <CheckoutForm
+        setView={this.setView}
+        placeOrder={this.placeOrder}
+        total={this.state.totalPrice}
       />;
     }
     return (<>
       <Header
         cartItemCount={this.state.cart.length}
         setView={this.setView}
+        orderTotal={this.state.totalPrice}
       />
-
       {pageView}
     </>);
   }

@@ -2,7 +2,6 @@ import React from 'react';
 import CartSummaryItem from './cart-summary-item';
 
 export default class CartSummary extends React.Component {
-
   render() {
     let cartTotalPrice = 0;
     for (let i = 0; i < this.props.cartItems.length; i++) {
@@ -25,6 +24,12 @@ export default class CartSummary extends React.Component {
             />
           ))}
           <div>Total Price: {this.props.convertToDollars(cartTotalPrice)}</div>
+          <button
+            className="btn btn-primary"
+            onClick={() => {
+              this.props.setTotalPrice(this.props.convertToDollars(cartTotalPrice));
+              this.props.setView('checkout', { });
+            }}>Checkout</button>
         </div>
       );
     }
@@ -32,6 +37,7 @@ export default class CartSummary extends React.Component {
       <div className="container">
         <h1>My Cart</h1>
         <div>Your cart is empty.</div>
+        <div onClick={() => { this.props.setView('catalog'); }}> &lt; Back to catalog </div>
       </div>
     );
   }
