@@ -50,13 +50,11 @@ export default class CheckoutForm extends React.Component {
             onChange={this.handleNameChange}
             type="text"
             className="form-control"
-            id="name"/>
-
+            id="name" />
           <label htmlFor="creditCard" className="pt-4">Credit Card</label>
           <input
             onChange={this.handleCcChange}
             type="number" className="form-control" id="creditCard" />
-
           <label htmlFor="shippingAddress" className="pt-4">Shipping Address</label>
           <textarea
             onChange={this.handleAddressChange}
@@ -67,12 +65,10 @@ export default class CheckoutForm extends React.Component {
             </div>
             <div className="col">
               <button
-                onClick={ () => this.props.placeOrder()}
+                onClick={() => this.props.placeOrder()}
                 type="submit" className="btn btn-primary">Place Order</button>
             </div>
-
           </div>
-
         </form>
       </div>
     );

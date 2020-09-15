@@ -28,7 +28,6 @@ app.get('/api/products', (req, res, next) => {
     .catch(err => next(err));
 });
 
-// get request endpoint for product details
 app.get('/api/products/:productId', (req, res, next) => {
   const productId = req.params.productId;
   const sql = `
@@ -42,7 +41,6 @@ app.get('/api/products/:productId', (req, res, next) => {
     .catch(err => next(err));
 });
 
-// get request endpoint for cart
 app.get('/api/cart', (req, res, next) => {
   const sql = `
     select "c"."cartItemId",
@@ -66,7 +64,6 @@ app.get('/api/cart', (req, res, next) => {
   }
 });
 
-// post request endpoint for cart
 app.post('/api/cart', (req, res, next) => {
 
   const productId = parseInt(req.body.productId);
