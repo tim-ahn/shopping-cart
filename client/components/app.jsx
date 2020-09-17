@@ -1,20 +1,21 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
-import Header from './header';
 import ProductDetails from './product-details';
 import ProductList from './product-list';
-import CartSummaryItem from './cart-summary-item';
 import CartSummary from './cart-summary';
 import CheckoutForm from './checkout-form';
+import WarningModal from './warning-modal';
+import HeroUnit from './hero-unit';
+import NavBar from './navbar';
+import ContactPage from './contact';
 
-class App extends React.Component {
+export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       message: null,
       isLoading: true,
       view: {
-        name: 'catalog',
+        name: 'home',
         params: {}
       },
       cart: [],
@@ -101,43 +102,46 @@ class App extends React.Component {
 
   render() {
     let pageView;
-    if (this.state.view.name === 'catalog') {
+    if (this.state.view.name === 'home') {
+      pageView =
+      <HeroUnit
+        setView={this.setView}/>;
+    } else if (this.state.view.name === 'catalog') {
       pageView =
       <ProductList
         convertToDollars={this.convertToDollars}
         setView={this.setView}/>;
+    } else if (this.state.view.name === 'contact') {
+      pageView =
+      <ContactPage />;
     } else if (this.state.view.name === 'details') {
       pageView =
       <ProductDetails
         convertToDollars={this.convertToDollars}
         params={this.state.view.params}
         setView={this.setView}
-        addToCart={this.addToCart}
-      />;
+        addToCart={this.addToCart}/>;
     } else if (this.state.view.name === 'cart') {
       pageView =
       <CartSummary
         cartItems={this.state.cart}
         convertToDollars={this.convertToDollars}
         setView={this.setView}
-        setTotalPrice={this.setTotalPrice}
-      />;
+        setTotalPrice={this.setTotalPrice}/>;
     } else if (this.state.view.name === 'checkout') {
       pageView =
       <CheckoutForm
         setView={this.setView}
         placeOrder={this.placeOrder}
-        total={this.state.totalPrice}
-      />;
+        total={this.state.totalPrice}/>;
     }
     return (<>
-      <Header
+      <NavBar
         cartItemCount={this.state.cart.length}
         setView={this.setView}
-        orderTotal={this.state.totalPrice}
-      />
+        orderTotal={this.state.totalPrice}/>
+      <WarningModal />
       {pageView}
     </>);
   }
 }
-export default App;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-class ProductDetails extends React.Component {
+export default class ProductDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,26 +22,34 @@ class ProductDetails extends React.Component {
       return null;
     } else {
       return (
-        <div className="card border border-light m-4">
-          <div
-            className="ml-4"
-            onClick={() => { this.props.setView('catalog', {}); }}> &lt; Back to catalog </div>
-          <div className="card-body">
-            <img
-              src={this.state.product.image.toString()}
-              className="col-sm-4 pr-4 card-img-top float-left object-fit p-2" alt=""></img>
-            <h3 className="card-title">{this.state.product.name}</h3>
-            <div className="card-subtitle">{this.props.convertToDollars(this.state.product.price)}</div>
-            <div className="card-text">{this.state.product.shortDescription}</div>
+        <>
+          <div className="px-4 pt-4 text-center">
             <button
-              className="btn btn-primary"
-              onClick={() => { this.props.addToCart(this.state.product); }}
-            >Add to Cart</button>
+              className="btn btn-warning"
+              onClick={() => { this.props.setView('catalog', {}); }}>Back to Products</button>
           </div>
-          <div className="card-text pb-4 px-4">{this.state.product.longDescription}</div>
-        </div>
+          <div
+            className="card border border-light m-4 text-center">
+            <div className="card-body">
+              <img
+                src={this.state.product.image.toString()}
+                className="card-img-top float-left product-detail pb-2" alt="Card image cap"></img>
+              <h3 className="card-title ">{this.state.product.name}</h3>
+              <div
+                className="card-subtitle  pb-2"
+                style={{ fontSize: '1.3rem' }}>{this.props.convertToDollars(this.state.product.price)}</div>
+
+              <div className="card-text">{this.state.product.longDescription}</div>
+              <div className="pt-4">
+                <button
+                  className="btn btn-success"
+                  onClick={() => { this.props.addToCart(this.state.product); }}
+                >Add to Cart</button>
+              </div>
+            </div>
+          </div>
+        </>
       );
     }
   }
 }
-export default ProductDetails;

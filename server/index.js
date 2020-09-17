@@ -65,32 +65,26 @@ app.get('/api/cart', (req, res, next) => {
 });
 
 app.post('/api/cart', (req, res, next) => {
-
   const productId = parseInt(req.body.productId);
-
   if (isNaN(productId) || productId < 1) {
     res.status(400).json({ error: 'productId is invalid' });
   }
-
   const priceQuery = `
     select "price"
       from "products"
       where "productId" = $1;
   `;
   const params = [productId];
-
   const insertCartQuery = `
     insert into "carts" ("cartId", "createdAt")
       values (default, default)
       returning "cartId"
   `;
-
   const insertCartItemsQuery = `
     insert into "cartItems" ("cartId", "productId", "price")
       values ($1, $2, $3)
       returning "cartItemId"
   `;
-
   const cartInfoQuery = `
     select "c"."cartItemId",
            "c"."price",
@@ -102,7 +96,6 @@ app.post('/api/cart', (req, res, next) => {
       join "products" as "p" using ("productId")
     where "c"."cartItemId" = $1
   `;
-
   db.query(priceQuery, params)
     .then(priceResult => {
       if (priceResult.rows.length < 1) {
@@ -158,9 +151,7 @@ app.post('/api/orders', (req, res, next) => {
   const orderParams = [cartId, name, creditCard, shippingAddress];
   db.query(insertOrderQuery, orderParams)
     .then(result => {
-
       res.status(201).json(result.rows[0]);
-
       delete req.session.cartId;
     })
     .catch(err => next(err));
