@@ -1,5 +1,5 @@
 # The Gallery
-A full stack, mobile-responsive Node.js and React shopping cart app.
+A full stack Node.js and React shopping cart app.
 
 ## Live Site
 https://gallery.tim-ahn.com/
