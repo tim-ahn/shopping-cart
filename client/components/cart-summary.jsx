@@ -7,11 +7,9 @@ export default class CartSummary extends React.Component {
     for (let i = 0; i < this.props.cartItems.length; i++) {
       cartTotalPrice += this.props.cartItems[i].price;
     }
-
     if (this.props.cartItems.length > 0) {
       return (
-        <div className="container">
-          <div onClick={() => { this.props.setView('catalog'); }}> &lt; Back to catalog </div>
+        <div className="container mt-4">
           <h1>My Cart</h1>
           {this.props.cartItems.map((item, index) => (
             <CartSummaryItem
@@ -23,13 +21,21 @@ export default class CartSummary extends React.Component {
               convertToDollars={this.props.convertToDollars}
             />
           ))}
-          <div>Total Price: {this.props.convertToDollars(cartTotalPrice)}</div>
-          <button
-            className="btn btn-primary"
-            onClick={() => {
-              this.props.setTotalPrice(this.props.convertToDollars(cartTotalPrice));
-              this.props.setView('checkout', { });
-            }}>Checkout</button>
+          <div className="container-fluid">
+            <div className="row pt-2">
+              <div
+                className="col-6 text-center" style={{ fontSize: '1.3rem' }}
+              >Total Price: {this.props.convertToDollars(cartTotalPrice)}</div>
+              <div className="col-6 text-center">
+                <button
+                  className="btn btn-success"
+                  onClick={() => {
+                    this.props.setTotalPrice(this.props.convertToDollars(cartTotalPrice));
+                    this.props.setView('checkout', {});
+                  }}>Checkout</button>
+              </div>
+            </div>
+          </div>
         </div>
       );
     }
@@ -37,7 +43,7 @@ export default class CartSummary extends React.Component {
       <div className="container">
         <h1>My Cart</h1>
         <div>Your cart is empty.</div>
-        <div onClick={() => { this.props.setView('catalog'); }}> &lt; Back to catalog </div>
+        <button onClick={() => { this.props.setView('catalog'); }}>Back to Products </button>
       </div>
     );
   }

@@ -1,7 +1,7 @@
 import React from 'react';
 import ProductListItem from './product-list-item';
 
-class ProductList extends React.Component {
+export default class ProductList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,20 +24,23 @@ class ProductList extends React.Component {
   render() {
     if (this.state.products.length > 0) {
       return (
-        <div className="card-columns flex-wrap ml-4">
-          {
-            this.state.products.map((product, index) =>
-              (
-                <ProductListItem
-                  key={index}
-                  setView={this.props.setView}
-                  convertToDollars={this.props.convertToDollars}
-                  product={product}
-
-                />
-              )
-            )
-          }
+        <div className="container">
+          <div className="row">
+            <div className="card-columns flex-wrap m-2">
+              {
+                this.state.products.map((product, index) =>
+                  (
+                    <ProductListItem
+                      key={index}
+                      setView={this.props.setView}
+                      convertToDollars={this.props.convertToDollars}
+                      product={product}
+                    />
+                  )
+                )
+              }
+            </div>
+          </div>
         </div>
       );
     } else {
@@ -45,4 +48,3 @@ class ProductList extends React.Component {
     }
   }
 }
-export default ProductList;
