@@ -43,7 +43,7 @@ export default class CartSummary extends React.Component {
       <div className="container">
         <h1>My Cart</h1>
         <div>Your cart is empty.</div>
-        <button onClick={() => { this.props.setView('catalog'); }}>Back to Products </button>
+        <button className="btn btn-primary" onClick={() => { this.props.setView('catalog'); }}>Back to Products </button>
       </div>
     );
   }
