@@ -4,9 +4,7 @@ import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Na
 export default class NavBar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isOpen: false
-    };
+    this.state = { isOpen: false };
     this.toggle = this.toggle.bind(this);
   }
 
