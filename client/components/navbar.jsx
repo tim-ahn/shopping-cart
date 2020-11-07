@@ -20,7 +20,7 @@ export default class NavBar extends React.Component {
 
   render() {
     return (
-      <div>
+      <>
         <Navbar color="light" light expand="md">
           <NavbarBrand className="ml-2" href="/">The Gallery</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
@@ -35,7 +35,7 @@ export default class NavBar extends React.Component {
             </NavbarText>
           </Collapse>
         </Navbar>
-      </div>
+      </>
     );
   }
 }
