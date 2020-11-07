@@ -1,14 +1,5 @@
 import React from 'react';
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  NavbarText
-} from 'reactstrap';
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, NavbarText } from 'reactstrap';
 
 export default class NavBar extends React.Component {
   constructor(props) {
@@ -36,18 +27,9 @@ export default class NavBar extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="mr-auto" navbar>
               <NavItem className="ml-3">
-                <NavLink onClick={() => { this.props.setView('catalog'); }}>Products</NavLink>
-              </NavItem>
-              <NavItem className="ml-3">
-                <NavLink onClick={() => { this.props.setView('contact'); }}>About Us</NavLink>
-              </NavItem>
-              <NavItem className="ml-3">
-                <NavLink onClick={() => { this.props.setView('contact'); }}>Contact</NavLink>
+                <NavLink onClick={() => { this.props.setView('catalog'); }}>All Products</NavLink>
               </NavItem>
             </Nav>
-            <NavbarText className="m-1">
-              <button type="button" className="btn btn-light" onClick={() => { this.props.setView('contact'); }}>Sign In</button>
-            </NavbarText>
             <NavbarText className="m-1 mr-3">
               <button type="button" className="btn btn-success" onClick={() => { this.props.setView('cart'); }}>Cart: {this.props.cartItemCount}</button>
             </NavbarText>
