@@ -2,7 +2,7 @@
 A full stack Node.js and React shopping cart app.
 
 ## Live Site
-https://gallery.tim-ahn.com/
+https://shop.tim-ahn.com/
 
 ## Technologies Used
 <li>React.js</li>
