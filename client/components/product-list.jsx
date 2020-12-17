@@ -5,9 +5,15 @@ export default class ProductList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      products: []
+      products: [],
+      hover: false
     };
     this.getProducts = this.getProducts.bind(this);
+    this.changeBackground = this.changeBackground.bind(this);
+  }
+
+  toggleHover() {
+    this.setState({ hover: !this.state.hover });
   }
 
   getProducts() {
@@ -21,6 +27,10 @@ export default class ProductList extends React.Component {
     this.getProducts();
   }
 
+  changeBackground(event) {
+    event.target.style.backgroundColor = 'aqua !important';
+  }
+
   render() {
     if (this.state.products.length > 0) {
       return (
@@ -31,6 +41,8 @@ export default class ProductList extends React.Component {
                 this.state.products.map((product, index) =>
                   (
                     <ProductListItem
+                      className='poopcard'
+                      onMouseOver={this.changeBackground}
                       key={index}
                       setView={this.props.setView}
                       convertToDollars={this.props.convertToDollars}

@@ -1,3 +1,10 @@
+@font-face {
+	font-family: PKMNRBYGSC;
+	src: url(PKMN_RBYGSC.ttf);
+}
+* {
+    font-family: PKMNRBYGSC;
+}
 .object-fit {
     height: 40vh;
     object-fit: contain;
@@ -6,4 +13,19 @@
     width: 100%;
     height: 60vh;
     object-fit: contain;
+}
+.card:hover {
+    background-color: whitesmoke !important;
+}
+.nav-link:hover {
+    background-color: whitesmoke !important;
+}
+.navbar-brand:hover {
+    background-color: whitesmoke !important;
+}
+.checkoutButtons {
+    display: flex;
+    justify-content: space-between;
+
+
 }

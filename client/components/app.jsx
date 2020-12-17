@@ -6,7 +6,6 @@ import CheckoutForm from './checkout-form';
 import WarningModal from './warning-modal';
 import HeroUnit from './hero-unit';
 import NavBar from './navbar';
-import ContactPage from './contact';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -111,9 +110,6 @@ export default class App extends React.Component {
       <ProductList
         convertToDollars={this.convertToDollars}
         setView={this.setView}/>;
-    } else if (this.state.view.name === 'contact') {
-      pageView =
-      <ContactPage />;
     } else if (this.state.view.name === 'details') {
       pageView =
       <ProductDetails
