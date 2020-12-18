@@ -35,7 +35,9 @@ export default class CheckoutForm extends React.Component {
   }
 
   handleCcChange(event) {
-    this.setState({ creditCard: event.target.value });
+    if (event.target.value.length === 12) {
+      this.setState({ creditCard: event.target.value });
+    }
   }
 
   handleStreetAddressChange(event) {
@@ -55,28 +57,23 @@ export default class CheckoutForm extends React.Component {
   }
 
   handleZipChange(event) {
-    this.setState({ zip: event.target.value });
+    if (event.target.value.length === 5) {
+      this.setState({ zip: event.target.value });
+    }
   }
 
   handleSubmit(event) {
-    event.preventDefault();
-    const order = {
-      name: this.state.firstName + ' ' + this.state.lastName,
-      creditCard: this.state.creditCard,
-      shippingAddress: this.state.streetAddress + ' ' + this.state.streetAddress2 + ' ' + this.state.city + ' ' + this.state.stateProvince + ' ' + this.state.zip
-    };
-    this.props.placeOrder(order);
-    this.setState({
-      firstName: '',
-      lastName: '',
-      creditCard: 0,
-      shippingAddress: '',
-      streetAddress: '',
-      streetAddress2: '',
-      city: '',
-      stateProvince: '',
-      zip: ''
-    });
+    if (!this.state.firstName || !this.state.lastName || !this.state.creditCard || !this.state.streetAddress || !this.state.city || !this.state.stateProvince || !this.state.zip) {
+      event.preventDefault();
+    } else {
+      const order = {
+        name: this.state.firstName + ' ' + this.state.lastName,
+        creditCard: this.state.creditCard,
+        shippingAddress: this.state.streetAddress + ' ' + this.state.streetAddress2 + ' ' + this.state.city + ' ' + this.state.stateProvince + ' ' + this.state.zip
+      };
+      this.props.placeOrder(order);
+      this.setState({ firstName: '', lastName: '', creditCard: 0, shippingAddress: '', streetAddress: '', streetAddress2: '', city: '', stateProvince: '', zip: '' });
+    }
   }
 
   render() {
