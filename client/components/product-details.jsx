@@ -29,14 +29,14 @@ export default class ProductDetails extends React.Component {
               onClick={() => { this.props.setView('catalog', {}); }}>Back to Products</button>
           </div>
           <div
-            className="card border border-light m-4 text-center">
+            className=" border border-light m-4 text-center">
             <div className="card-body">
               <img
                 src={this.state.product.image.toString()}
                 className="card-img-top float-left product-detail pb-2" alt="Card image cap"></img>
               <h3 className="card-title ">{this.state.product.name}</h3>
               <div
-                className="card-subtitle  pb-2"
+                className="card-subtitle pb-2"
                 style={{ fontSize: '1.3rem' }}>{this.props.convertToDollars(this.state.product.price)}</div>
 
               <div className="card-text">{this.state.product.longDescription}</div>

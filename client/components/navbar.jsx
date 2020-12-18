@@ -20,12 +20,12 @@ export default class NavBar extends React.Component {
     return (
       <>
         <Navbar color="light" light expand="md">
-          <NavbarBrand className="ml-2" href="/">The Gallery</NavbarBrand>
+          <NavbarBrand className="ml-2" href="/" onClick={() => this.props.setView('home')}>Fun Stuff Corp.</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="mr-auto" navbar>
               <NavItem className="ml-3">
-                <NavLink onClick={() => { this.props.setView('catalog'); }}>All Products</NavLink>
+                <NavLink onClick={() => { this.props.setView('catalog'); }}>Products</NavLink>
               </NavItem>
             </Nav>
             <NavbarText className="m-1 mr-3">
