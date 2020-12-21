@@ -35,13 +35,13 @@ export default class ProductList extends React.Component {
     if (this.state.products.length > 0) {
       return (
         <div className="container">
-          <div className="row">
-            <div className="card-columns flex-wrap m-2">
+          <div className="row ">
+            <div className="card-deck">
               {
                 this.state.products.map((product, index) =>
                   (
                     <ProductListItem
-                      className='poopcard'
+
                       onMouseOver={this.changeBackground}
                       key={index}
                       setView={this.props.setView}

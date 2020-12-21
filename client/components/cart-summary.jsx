@@ -9,7 +9,7 @@ export default class CartSummary extends React.Component {
     }
     if (this.props.cartItems.length > 0) {
       return (
-        <div className="container mt-4">
+        <div className="container my-4">
           <h1>My Cart</h1>
           {this.props.cartItems.map((item, index) => (
             <CartSummaryItem
@@ -41,8 +41,8 @@ export default class CartSummary extends React.Component {
     }
     return (
       <div className="container">
-        <h1>My Cart</h1>
-        <div>Your cart is empty.</div>
+        <h1 className="pt-2">Your Cart</h1>
+        <div className="py-2">...is empty.</div>
         <button className="btn btn-primary" onClick={() => { this.props.setView('catalog'); }}>Back to Products </button>
       </div>
     );
