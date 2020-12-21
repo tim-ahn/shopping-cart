@@ -4,7 +4,7 @@ import { Jumbotron } from 'reactstrap';
 export default class HeroUnit extends React.Component {
   render() {
     return (
-      <Jumbotron>
+      <Jumbotron className="hero">
         <h1 className="display-3">Fun Stuff Corp.</h1>
         <p className="lead">The premier online retailer of fun stuff.</p>
       </Jumbotron>

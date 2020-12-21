@@ -16,16 +16,24 @@
 }
 .card:hover {
     background-color: whitesmoke !important;
+    cursor: pointer;
 }
 .nav-link:hover {
     background-color: whitesmoke !important;
+    cursor: pointer;
 }
 .navbar-brand:hover {
     background-color: whitesmoke !important;
+    cursor: pointer;
 }
 .checkoutButtons {
     display: flex;
     justify-content: space-between;
-
-
+}
+.hero {
+    cursor: default;
+}
+.min-card {
+    min-height: 327px;
+    min-width: 317px;
 }
