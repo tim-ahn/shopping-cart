@@ -34,8 +34,8 @@ export default class ProductList extends React.Component {
   render() {
     if (this.state.products.length > 0) {
       return (
-        <div className="container">
-          <div className="row ">
+        <div className="container list-padding">
+          <div className="row">
             <div className="card-deck">
               {
                 this.state.products.map((product, index) =>
